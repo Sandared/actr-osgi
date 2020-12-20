@@ -27,15 +27,14 @@ import io.jatoms.actr.whiteboard.api.Actor;
 @Component
 public class ActrWhiteboard {
 
-    private IActorSystem system = Actr.newSystem("default");
-
     private Map<String, ServiceRegistration<IActorRef>> actors = new ConcurrentHashMap<>();
-
+    private IActorSystem system;
     private BundleContext context;
 
     @Activate
     void activate(BundleContext context) {
         this.context = context;
+        system = Actr.newSystem("default");
     }
 
     @Deactivate

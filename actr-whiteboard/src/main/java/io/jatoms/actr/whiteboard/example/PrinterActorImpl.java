@@ -9,7 +9,7 @@ public class PrinterActorImpl implements PrinterActor, Actor{
 
     @Override
     public void printHello() {
-        System.out.println("Hello World on Thread " + Thread.currentThread().getId());
+        System.out.println("Hello Actor World on Thread " + Thread.currentThread().getId());
     }
     
 }

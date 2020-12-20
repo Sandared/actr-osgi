@@ -15,7 +15,7 @@ public class Example {
 
     @Activate
     void activate(){
-        System.out.println("Starting on Thread " + Thread.currentThread().getId());
+        System.out.println("Starting Example on Thread " + Thread.currentThread().getId());
         printer.tell(PrinterActor::printHello);
     }
     
