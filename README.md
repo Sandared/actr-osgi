@@ -56,3 +56,10 @@ Now there should be some output on the console like this:
 Starting Example on Thread 53
 Hello Actor World on Thread 241
 ```
+
+
+## How this integration could be improved
+Just a loosely coupled collection of ideas:
+* Use Apache Aries Componen DSL for a better Whiteboard implementation (Currently I don't understand it enough to use it correctly)
+* Instead of marker interface `Actor` use a custom `ComponentPropertyType` like `@Actor("My Actor")` 
+* ???
