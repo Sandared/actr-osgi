@@ -7,7 +7,7 @@ tasks:
       wget -O karaf.tar.gz http://archive.apache.org/dist/karaf/4.3.0/apache-karaf-4.3.0.tar.gz &&
       tar -zvxf karaf.tar.gz &&
       rm karaf.tar.gz &&
-      cd libs/actr &&
+      cd /workspace/actr-osgi/libs/actr &&
       mvn clean install &&
       cd ../.. &&
       mvn clean install
