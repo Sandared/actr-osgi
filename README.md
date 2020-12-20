@@ -53,6 +53,6 @@ In your Karaf type the following commands (after you built the project):
 
 Now there should be some output on the console like this:
 ```
-Starting on Thread 53
-Hello World on Thread 241
+Starting Example on Thread 53
+Hello Actor World on Thread 241
 ```
