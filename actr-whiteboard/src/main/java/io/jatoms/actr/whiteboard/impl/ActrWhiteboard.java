@@ -3,6 +3,7 @@ package io.jatoms.actr.whiteboard.impl;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.zakgof.actr.Actr;
@@ -42,19 +43,11 @@ public class ActrWhiteboard {
     }
 
     @Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY)
-    void addActor(Actor actor) {
-        IActorRef<Actor> actorRef = system.actorOf(() -> {
-            try {
-                return actor.getClass().getConstructor().newInstance();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        });
+    void addActor(Actor actor, Map<String, Object> properties) {
+        IActorRef<Actor> actorRef = system.actorOf(() -> actor);
 
-        Dictionary<String, Object> props = new Hashtable<>();
-        String actorName = actor.getClass().getSimpleName();
-        props.put("actr", actorName);
+        String actorName = actor.getClass().getName();
+        Dictionary<String, Object> props = copyProps(properties);
 
         if(context == null){
             context = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
@@ -62,13 +55,22 @@ public class ActrWhiteboard {
         ServiceRegistration<IActorRef> registration = context.registerService(IActorRef.class, actorRef, props);
 
         actors.put(actorName, registration);
-            
     }
 
     void removeActor(Actor actor){
-        String actorName = actor.getClass().getSimpleName();
+        String actorName = actor.getClass().getName();
         ServiceRegistration<IActorRef> registration = actors.remove(actorName);
         registration.unregister();
+    }
+
+    private Dictionary<String, Object> copyProps(Map<String, Object> properties){
+        Dictionary<String, Object> props = new Hashtable<>();
+        for (Entry<String, Object> entry : properties.entrySet()) {
+            if(!entry.getKey().startsWith("service") && !entry.getKey().startsWith("component") && !entry.getKey().startsWith("objectClass")){
+                props.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return props;
     }
     
 }

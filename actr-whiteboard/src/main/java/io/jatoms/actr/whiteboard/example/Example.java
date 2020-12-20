@@ -7,10 +7,12 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 
+
 @Component
 public class Example {
 
-    @Reference(target = "(actr=PrinterActorImpl)")
+    // "io.jatoms.actr" is defined by the ComponentPropertyType @Actr
+    @Reference(target = "(io.jatoms.actr=MyActor)")
     IActorRef<PrinterActor> printer;
 
     @Activate
