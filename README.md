@@ -1,3 +1,5 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Sandared/actr-osgi)
+
 # actr-osgi
 Integration of OSGi DS with https://github.com/zakgof/actr (Interesting new approach on actor systems)
 
