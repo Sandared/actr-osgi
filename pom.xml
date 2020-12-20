@@ -18,12 +18,14 @@
         <actr.version>0.4.0</actr.version>
         <bnd.version>5.0.0</bnd.version>
         <karaf.version>4.3.0</karaf.version>
+        <osgi.version>7.0.0</osgi.version>
         <maven-bundle-plugin.version>4.2.1</maven-bundle-plugin.version>
     </properties>
 
     <modules>
         <module>actr-whiteboard</module>
         <module>libs</module>
+        <module>featurerepo</module>
     </modules>
 
     <dependencyManagement>
@@ -36,9 +38,14 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>io.jatoms</groupId>
+                <groupId>com.zakgof.github</groupId>
                 <artifactId>actr</artifactId>
                 <version>${actr.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi.annotation</artifactId>
+                <version>${osgi.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

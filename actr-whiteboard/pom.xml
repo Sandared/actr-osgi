@@ -17,10 +17,23 @@
             <groupId>org.osgi</groupId>
             <artifactId>osgi.cmpn</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>io.jatoms</groupId>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.annotation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zakgof.github</groupId>
             <artifactId>actr</artifactId>
         </dependency>
+
+       
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

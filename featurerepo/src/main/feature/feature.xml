@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<features name="${project.artifactId}-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.6.0">
+
+    <feature name="actr-osgi" description="Actor Framework Whiteboard + Example" version="${project.version}">
+        <bundle>mvn:io.jatoms/actr-whiteboard/${project.version}</bundle>
+
+        <!-- dependencies -->
+        <feature>scr</feature>
+        
+        <bundle dependency="true">mvn:com.zakgof.github/actr/${actr.version}</bundle>
+    </feature>
+</features>
