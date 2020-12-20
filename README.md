@@ -12,14 +12,13 @@ Integrate an Actor framework into OSGi in that it is easily possible to
 
 In order to create an Actor a DS Component must implement the `Actor` marker interface (no methods to implement, just needed to get picked up by the whiteboard)
 ```java
+@Actr("MyActor")
 @Component
-public class PrinterActorImpl implements PrinterActor, Actor{
-
+public class PrinterActorImpl implements PrinterActor, Actor {
     @Override
     public void printHello() {
         System.out.println("Hello Actor World on Thread " + Thread.currentThread().getId());
     }
-    
 }
 ```
 
@@ -27,16 +26,29 @@ This actor can then be asynchronously called from a normal component like this:
 ```java
 @Component
 public class Example {
-
-    @Reference(target = "(actr=PrinterActorImpl)")
+    @Reference(target = "(io.jatoms.actr=MyActor)")
     IActorRef<PrinterActor> printer;
 
     @Activate
     void activate(){
         System.out.println("Starting Example on Thread " + Thread.currentThread().getId());
-        printer.tell(PrinterActor::printHello);
     }
-    
+}
+```
+
+You can also use @Reference in your Actors as you would in any other DS component:
+```java
+@Actr("MyActor")
+@Component
+public class PrinterActorImpl implements PrinterActor, Actor {
+    @Reference
+    StringGenerator generator;
+
+    @Override
+    public void printHello() {
+        System.out.println("Hello Actor World on Thread " + Thread.currentThread().getId());
+        System.out.println("StringGenerator generated: " + generator.getGeneratedString());
+    }
 }
 ```
 
